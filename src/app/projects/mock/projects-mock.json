@@ -1,0 +1,26 @@
+[
+  {
+    "tecnology": "Java | Spring Boot",
+    "title": "microservice-easy-transfer",
+    "description": "Este projeto consiste em um sistema de transferência de valores, desenvolvido com a arquitetura de microserviços, composto por três microserviços interconectados. Lembrando que a comunicação entre nossos microsserviços é efetuada via RabbitMQ",
+    "href": "https://github.com/MatheusMangueira/microservice-easy-transfer"
+  },
+  {
+    "tecnology": "Noje.js | Express",
+    "title": "E-commerce-API",
+    "description": "Este projeto de e-commerce foi desenvolvido como parte de um estudo prático sobre o desenvolvimento de aplicativos web modernos. A iniciativa surge da necessidade de aprimorar habilidades em desenvolvimento de software, especialmente no contexto de comércio eletrônico.",
+    "href": "https://github.com/MatheusMangueira/E-commerce-API"
+  },
+  {
+    "tecnology": "Java | Mobile",
+    "title": "horizon-covidMonitor",
+    "description": "Este é um aplicativo para monitoramento e registro de sintomas de pacientes relacionados ao COVID-19.",
+    "href": "https://github.com/MatheusMangueira/horizon-covidMonitor"
+  },
+  {
+    "tecnology": "Java",
+    "title": "CLI-Excel",
+    "description": "Este é um projeto desenvolvido com o objetivo de otimizar uma tarefa diária por meio da programação, proporcionando uma solução prática e funcional. A ideia surgiu da necessidade de comparar dois arquivos do Excel, cada um contendo uma lista de usuários com nomes, e-mails, etc. O desafio era verificar a presença de um usuário em ambas as listas para facilitar o processo de trabalho. E com isso coloquei meus estudos de algoritmo e estrutura de dados em prática, utilizanddo a busca binária para otimizar a aplicação.",
+    "href": "https://github.com/MatheusMangueira/CLI-Excel"
+  }
+]
