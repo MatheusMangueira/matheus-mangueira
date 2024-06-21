@@ -2,6 +2,7 @@
 
 import { Experiences } from "@/components/experiences";
 import { ImageSection } from "@/components/imageSection";
+import { Recommendations } from "@/components/messages";
 import { Title } from "@/components/title";
 
 import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
@@ -97,11 +98,19 @@ const Page = () => {
               ))}
             </div>
 
-            <Link href={"/"} className="w-full">
-              <p className="text-gray-400 underline text-lg text-end pt-6">
-                Voltar
-              </p>
-            </Link>
+            <p className="text-lg text-gray-[#565656] underline pt-4">
+              Recomendações
+            </p>
+
+            <Recommendations />
+
+            <div className="flex flex-row-reverse">
+              <Link href={"/"} className="">
+                <p className="text-gray-400 underline text-lg text-end ">
+                  Voltar
+                </p>
+              </Link>
+            </div>
           </div>
         </main>
       </m.div>
