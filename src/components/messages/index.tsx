@@ -3,14 +3,10 @@
 import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { Messages } from "./components/Messages";
-import { useState } from "react";
-
-type Message = {
-  name: string;
-  message: string;
-  relationship: string;
-  date?: string;
-};
+import { use, useEffect, useState } from "react";
+import { db } from "../../util/firebase";
+import { addDoc, collection, getDocs, orderBy, query } from "firebase/firestore";
+import { Message } from "./type";
 
 export const Recommendations = () => {
   const {
@@ -26,8 +22,6 @@ export const Recommendations = () => {
     },
   });
 
-  const [messages, setMessages] = useState<Message[]>([]);
-
   const date = new Date();
   const options: any = {
     weekday: "long",
@@ -36,20 +30,55 @@ export const Recommendations = () => {
   };
   const formattedDate = date.toLocaleDateString("pt-BR", options);
 
-  const handleSubmitMessage = (data: Message) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [visibleMessagesCount, setVisibleMessagesCount] = useState<number>(5);
+
+  const handleSubmitMessage = async (data: Message) => {
     const { name, message, relationship } = data;
 
-    setMessages((prev) => [{ name, message, relationship }]);
+    await addDoc(collection(db, "messages"), {
+      name,
+      message,
+      relationship,
+      date: formattedDate,
+    });
 
     reset({
       name: "",
       message: "",
     });
+
+    fetchMessages();
   };
-  console.log(messages);
+
+  const fetchMessages = async () => {
+    try {
+      const messagesQuery = query(
+        collection(db, "messages"),
+        orderBy("date", "asc")
+      );
+      const querySnapshot = await getDocs(messagesQuery);
+      const messages = querySnapshot.docs.map((doc) => doc.data() as Message);
+      setMessages(messages);
+    } catch (error) {
+      console.error("Error fetching messages: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  const showMoreMessages = () => {
+    setVisibleMessagesCount((prevCount) => prevCount + 5);
+  };
+
+  const showLessMessages = () => {
+    setVisibleMessagesCount((prevCount) => Math.max(prevCount - 5, 5));
+  };
 
   return (
-    <div className="">
+    <div>
       <h2 className="text-lg py-5">
         Olá, meu querido(a), como vai essa {formattedDate}? Seria excelente
         contar com uma recomendação sua para enriquecer minha jornada. Agradeço
@@ -137,26 +166,35 @@ export const Recommendations = () => {
           {errors.relationship && <span>Cargo é obrigatório</span>}
         </div>
 
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 transition-all
-          duration-300 ease-in text-white p-2 mt-2">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 transition-all
+          duration-300 ease-in text-white p-2 mt-2"
+        >
           Enviar
         </button>
       </form>
 
       <div className="border-t-2 border-gray-200 my-10">
-        <h2 className="text-base text-[#2e9e26] underline py-4">
-          Recebidas
-        </h2>
+        <h2 className="text-base text-[#2e9e26] underline py-4">Recebidas</h2>
 
-        {messages.map((item, index) => (
-          <Messages
-            key={index}
-            date={formattedDate}
-            message={item.message}
-            name={item.name}
-            relationship={item.relationship}
-          />
-        ))}
+        <Messages messages={messages.slice(0, visibleMessagesCount)} />
+        {visibleMessagesCount < messages.length && (
+          <button
+            onClick={showMoreMessages}
+            className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-4"
+          >
+            Ver Mais
+          </button>
+        )}
+        {visibleMessagesCount > 5 && (
+          <button
+            onClick={showLessMessages}
+            className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold"
+          >
+            Ver Menos
+          </button>
+        )}
       </div>
     </div>
   );
