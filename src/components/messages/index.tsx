@@ -1,11 +1,10 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { Controller } from "react-hook-form";
+import { fetchMessages, postMessage, userHasPosted } from "@/util/firestore";
+import { loginWithGoogle } from "@/util/googleAuthentication";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Messages } from "./components/Messages";
-import { use, useEffect, useState } from "react";
-import { db } from "../../util/firebase";
-import { addDoc, collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Message } from "./type";
 
 export const Recommendations = () => {
@@ -13,6 +12,8 @@ export const Recommendations = () => {
     control,
     handleSubmit,
     reset,
+    setError,
+
     formState: { errors },
   } = useForm<Message>({
     defaultValues: {
@@ -30,43 +31,72 @@ export const Recommendations = () => {
   };
   const formattedDate = date.toLocaleDateString("pt-BR", options);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [visibleMessagesCount, setVisibleMessagesCount] = useState<number>(5);
+  const [successMessage, setSuccessMessage] = useState<boolean>(false);
+
 
   const handleSubmitMessage = async (data: Message) => {
-    const { name, message, relationship } = data;
+    const { message, relationship } = data;
 
-    await addDoc(collection(db, "messages"), {
-      name,
+    setIsLoading(true);
+    setSuccessMessage(false);
+
+    const user = await loginWithGoogle();
+    if (!user) {
+      console.log("Usuário precisa estar logado para postar uma mensagem.");
+      setError('root', { message: "Usuário precisa estar logado para postar uma mensagem." });
+      setIsLoading(false);
+      return;
+    }
+
+    if (await userHasPosted(user.uid)) {
+      console.log("Você já fez uma publicação. Apenas uma mensagem por conta é permitida.");
+      setError('root', { message: "Você já fez uma publicação. Apenas uma mensagem por conta é permitida." });
+      setIsLoading(false);
+      return;
+    }
+
+    const messageData = {
+      name: user.displayName,
       message,
       relationship,
       date: formattedDate,
-    });
+      userId: user.uid,
+    };
 
-    reset({
-      name: "",
-      message: "",
-    });
 
-    fetchMessages();
-  };
-
-  const fetchMessages = async () => {
     try {
-      const messagesQuery = query(
-        collection(db, "messages"),
-        orderBy("date", "asc")
-      );
-      const querySnapshot = await getDocs(messagesQuery);
-      const messages = querySnapshot.docs.map((doc) => doc.data() as Message);
+      await postMessage(messageData);
+      reset({ name: "", message: "", });
+
+      const messages = await fetchMessages();
+
       setMessages(messages);
+      setSuccessMessage(true);
+
+      setTimeout(() => {
+        setSuccessMessage(false);
+      }, 5000);
+
+
     } catch (error) {
-      console.error("Error fetching messages: ", error);
+      console.error("Erro ao enviar a mensagem:", error);
+      setError('root', { message: "Erro ao enviar a mensagem. Tente novamente." });
+    } finally {
+      setIsLoading(false);
     }
+
   };
 
   useEffect(() => {
-    fetchMessages();
+    const getMessages = async () => {
+      const messages = await fetchMessages();
+      setMessages(messages);
+    };
+
+    getMessages();
   }, []);
 
   const showMoreMessages = () => {
@@ -89,26 +119,6 @@ export const Recommendations = () => {
         className="flex flex-col"
         onSubmit={handleSubmit(handleSubmitMessage)}
       >
-        <div className="flex flex-col pb-5">
-          <label className="text-gray-[#565656] text-base underline pb-2">
-            Nome
-          </label>
-          <Controller
-            name="name"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <input
-                type="text"
-                className="border-2 border-gray-200 p-2 rounded"
-                onChange={onChange}
-                value={value}
-                required
-              />
-            )}
-          />
-
-          {errors.name && <span>Nome é obrigatório</span>}
-        </div>
 
         <div className="flex flex-col pb-5">
           <label className="text-gray-[#565656] text-base underline pb-2">
@@ -171,9 +181,22 @@ export const Recommendations = () => {
           className="bg-blue-500 hover:bg-blue-600 transition-all
           duration-300 ease-in text-white p-2 mt-2"
         >
-          Enviar
+          {isLoading ? "Enviando..." : "Enviar"}
         </button>
       </form>
+
+      {errors.root && (
+        <div className="pt-2">
+          <h4 className="text-red-500">{errors.root.message}</h4>
+        </div>
+      )}
+
+      {successMessage && (
+        <div className="pt-2">
+          <h4 className="text-green-500">Sua mensagem foi enviada!</h4>
+        </div>
+      )}
+
 
       <div className="border-t-2 border-gray-200 my-10">
         <h2 className="text-base text-[#2e9e26] underline py-4">Recebidas</h2>
