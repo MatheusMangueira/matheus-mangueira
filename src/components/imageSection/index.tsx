@@ -34,8 +34,8 @@ export const ImageSection = () => {
               <Image
                 src="/images/eu.jpg"
                 alt="The street I grew up on"
-                width={220}
-                height={260}
+                width={120}
+                height={160}
                 className="pointer-events-none absolute inset-0 top-12 left-[45%] w-48 rotate-6 rounded-2xl bg-neutral-500 object-cover shadow-md transition-all sm:left-[60%] md:w-56"
                 priority
               />

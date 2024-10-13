@@ -40,7 +40,7 @@ export default function Home() {
 
                 <div>
                   <p className="font-light text-md mt-4">
-                    Criador de conteúdo apaixonado, contribuo para a comunidade
+                    Contribuo para a comunidade
                     dev compartilhando conhecimento, enquanto colaboro em
                     projetos tecnológicos, alimentando minha paixão pela
                     inovação.

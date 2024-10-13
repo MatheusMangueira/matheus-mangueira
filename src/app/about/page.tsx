@@ -10,15 +10,21 @@ import Link from "next/link";
 
 const company = [
   {
+    name: "InHire - Software de Recrutamento e Seleção",
+    img: "/images/inhire.jpg",
+    office: "Software Engineer",
+    year: "2024 - Atualmente",
+  },
+  {
     name: "Teamsoft Sistemas e Tecnologia",
     img: "/images/teamsoft.jpg",
-    office: "Desenvolvedor de Software",
+    office: "Software Engineer",
     year: "2022 - 2023",
   },
   {
     name: "Hacking Force",
     img: "/images/hackingforce.jpg",
-    office: "Desenvolvedor de Software",
+    office: "Software Engineer",
     year: "2022 - 2023",
   },
 ];
@@ -33,7 +39,7 @@ const Page = () => {
       >
         <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
           <div className="max-w-[800px] w-full">
-            <Title title="Sobre" />
+            <Title title="Sobre" goBack={true} />
 
             <ImageSection />
             <div className="pb-12">
@@ -73,7 +79,7 @@ const Page = () => {
                 <br />
                 <br />
                 Durante esse período, atuei na equipe de desenvolvimento da
-                TeamsFot, onde desempenhei um papel fundamental no
+                TeamSoft, onde desempenhei um papel fundamental no
                 desenvolvimento de uma aplicação de controle de estoque
                 altamente robusta. Trabalhar ao lado de profissionais
                 qualificados foi enriquecedor, proporcionando-me um valioso
@@ -85,6 +91,9 @@ const Page = () => {
                 estágios iniciais. Durante essa fase inicial, fui fundamental no
                 desenvolvimento de várias aplicações que contribuíram para o
                 sucesso da empresa.
+                <br />
+                <br />
+                Atualmente, trabalho como desenvolvedor de software na InHire, uma das empresas mais promissoras no setor de seleção e recrutamento de talentos. Utilizo tecnologias como AWS, DynamoDB, React, Node.js e TypeScript para desenvolver soluções inovadoras e escaláveis.
               </p>
 
               {company.map((company) => (
@@ -104,13 +113,7 @@ const Page = () => {
 
             <Recommendations />
 
-            <div className="flex flex-row-reverse">
-              <Link href={"/"} className="">
-                <p className="text-gray-400 underline text-lg text-end ">
-                  Voltar
-                </p>
-              </Link>
-            </div>
+
           </div>
         </main>
       </m.div>

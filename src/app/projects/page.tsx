@@ -16,7 +16,8 @@ const Page = () => {
       >
         <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
           <div className="max-w-[800px] w-full">
-            <Title title="Projetos" />
+
+            <Title title="Projetos" goBack={true} />
 
             {mockProjects.map((project) => (
               <div
@@ -43,11 +44,7 @@ const Page = () => {
                 </div>
               </div>
             ))}
-            <Link href={"/"} className="w-full">
-              <p className="text-gray-400 underline text-lg text-end pt-6">
-                Voltar
-              </p>
-            </Link>
+
           </div>
         </main>
       </m.div>
