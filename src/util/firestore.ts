@@ -14,7 +14,8 @@ export const fetchMessages = async () => {
       message: data.message,
       relationship: data.relationship,
       date: data.date || '',
-      userId: data.userId
+      userId: data.userId,
+      photoUrl: data.photoUrl
     } as Message;
   });
 };

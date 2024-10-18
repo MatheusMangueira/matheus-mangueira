@@ -64,6 +64,7 @@ export const Recommendations = () => {
       relationship,
       date: formattedDate,
       userId: user.uid,
+      photoUrl: user.photoURL,
     };
 
 

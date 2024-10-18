@@ -3,4 +3,5 @@ export interface Message {
   message: string;
   relationship: string;
   date?: string;
+  photoUrl?: string;
 };
