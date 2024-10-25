@@ -39,6 +39,7 @@ export const Messages = ({ messages }: MessagesProps) => {
         ? item.message
         : item.message.slice(0, limit);
 
+
       return (
         <div key={index} className="my-4 pb-2 border-b-2 border-gray-200 ">
 
@@ -82,7 +83,7 @@ export const Messages = ({ messages }: MessagesProps) => {
             </button>
           )}
         </div>
-      );
+      )
     })
   ) : (
     <div>Carregando...</div>

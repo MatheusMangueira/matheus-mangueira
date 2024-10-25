@@ -4,4 +4,5 @@ export interface Message {
   relationship: string;
   date?: string;
   photoUrl?: string;
+  approval?: boolean;
 };

@@ -30,6 +30,8 @@ const company = [
 ];
 
 const Page = () => {
+
+
   return (
     <LazyMotion features={domAnimation}>
       <m.div

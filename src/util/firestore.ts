@@ -1,6 +1,7 @@
 import { collection, query, where, getDocs, addDoc, orderBy, WithFieldValue, DocumentData } from "firebase/firestore";
 import { db } from './firebase';
 import { Message } from "@/components/messages/type";
+import { sendEmail } from "./email";
 
 export const fetchMessages = async () => {
   const messagesQuery = query(collection(db, "messages"), orderBy("date", "asc"));
@@ -10,12 +11,14 @@ export const fetchMessages = async () => {
   return querySnapshot.docs.map(doc => {
     const data = doc.data() as DocumentData;
     return {
+      commentId: doc.id,
       name: data.name,
       message: data.message,
       relationship: data.relationship,
       date: data.date || '',
       userId: data.userId,
-      photoUrl: data.photoUrl
+      photoUrl: data.photoUrl,
+      approval: data.approval
     } as Message;
   });
 };
@@ -27,5 +30,6 @@ export const userHasPosted = async (userId: string) => {
 };
 
 export const postMessage = async (messageData: WithFieldValue<DocumentData>) => {
-  await addDoc(collection(db, "messages"), messageData);
+  const docRef = await addDoc(collection(db, "messages"), messageData);
+  return docRef.id;
 };

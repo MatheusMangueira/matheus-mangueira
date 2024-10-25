@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Messages } from "./components/Messages";
 import { Message } from "./type";
+import { sendEmail } from "@/util/email";
 
 export const Recommendations = () => {
   const {
@@ -59,6 +60,7 @@ export const Recommendations = () => {
     }
 
     const messageData = {
+      approval: false,
       name: user.displayName,
       message,
       relationship,
@@ -69,17 +71,25 @@ export const Recommendations = () => {
 
 
     try {
-      await postMessage(messageData);
+      const messageId = await postMessage(messageData);
+
       reset({ name: "", message: "", });
 
-      const messages = await fetchMessages();
+      await sendEmail
+        ({
+          commentId: messageId,
+          commentUser: user.displayName,
+          comment: message,
+          date: formattedDate,
+        });
 
+      const messages = await fetchMessages();
       setMessages(messages);
       setSuccessMessage(true);
 
       setTimeout(() => {
         setSuccessMessage(false);
-      }, 5000);
+      }, 10000);
 
 
     } catch (error) {
@@ -107,6 +117,8 @@ export const Recommendations = () => {
   const showLessMessages = () => {
     setVisibleMessagesCount((prevCount) => Math.max(prevCount - 5, 5));
   };
+
+  const approvedMessages = messages.filter((msg) => msg.approval);
 
   return (
     <div>
@@ -194,7 +206,9 @@ export const Recommendations = () => {
 
       {successMessage && (
         <div className="pt-2">
-          <h4 className="text-green-500">Sua mensagem foi enviada!</h4>
+          <h4 className="text-green-500">
+            Sua mensagem foi enviada para aprovação! Agradecemos seu feedback e aguarde ansiosamente uma resposta em breve.
+          </h4>
         </div>
       )}
 
@@ -202,8 +216,10 @@ export const Recommendations = () => {
       <div className="border-t-2 border-gray-200 my-10">
         <h2 className="text-base text-[#2e9e26] underline py-4">Recebidas</h2>
 
-        <Messages messages={messages.slice(0, visibleMessagesCount)} />
-        {visibleMessagesCount < messages.length && (
+        <Messages messages={approvedMessages.slice(0, visibleMessagesCount)} />
+
+
+        {visibleMessagesCount < approvedMessages.length && (
           <button
             onClick={showMoreMessages}
             className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-4"
