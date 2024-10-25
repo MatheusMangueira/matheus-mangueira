@@ -20,9 +20,6 @@ export const sendEmail = async ({ commentId, commentUser, comment, date }: Email
     },
   });
 
-  // em desenvolvimento
-  // const approvalLink = `http://localhost:3000/approval/${commentId}`;
-
   const approvalLink = `https://matheus-mangueira-five.vercel.app/approval/${commentId}`;
 
   const emailOptions = {
@@ -35,7 +32,7 @@ export const sendEmail = async ({ commentId, commentUser, comment, date }: Email
   try {
     await transport.sendMail(emailOptions);
   } catch (error) {
-    console.log(error, 'error');
+    console.log(error);
     throw new Error("Falha ao enviar e-mail.");
   }
 }
