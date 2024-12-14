@@ -5,15 +5,18 @@ import { Link } from '@/i18n/routing';
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
-
+import { useParams } from "next/navigation";
 
 export default function Home() {
   const t = useTranslations('HomePage');
+  const params = useParams();
+
+  console.log(params.locale);
 
   const routes = [
     { name: t("on"), href: "/about" },
     { name: t("projects"), href: "/projects" },
-    { name: t("cv"), href: "/pdf/matheusMangueira.pdf" },
+    { name: t("cv"), href: `pdf/matheusMangueira.pdf` },
   ];
 
 
@@ -57,7 +60,7 @@ export default function Home() {
                         <Link
                           className="underline hover:text-gray-400 ease-in duration-300 "
                           download={
-                            route.href === "/pdf/matheusMangueira.pdf"
+                            route.href === `${params.locale}/pdf/matheusMangueira.pdf`
                               ? "currículo-matheus-mangueira.pdf"
                               : undefined
                           }
