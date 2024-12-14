@@ -3,10 +3,40 @@
 import { Title } from "@/components/title";
 
 import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
-import mockProjects from "./mock/projects-mock.json";
 
 const Page = () => {
+  const t = useTranslations('projects');
+
+  const mockProjects = [
+    {
+      technology: "Java | Spring Boot",
+      title: "microservice-easy-transfer",
+      description: t("description.1"),
+      href: "https://github.com/MatheusMangueira/microservice-easy-transfer"
+    },
+    {
+      technology: "Noje.js | Express",
+      title: "E-commerce-API",
+      description: t("description.2"),
+      href: "https://github.com/MatheusMangueira/E-commerce-API"
+    },
+    {
+      technology: "Java | Mobile",
+      title: "horizon-covidMonitor",
+      description: t("description.3"),
+      href: "https://github.com/MatheusMangueira/horizon-covidMonitor"
+    },
+    {
+      technology: "Java",
+      title: "CLI-Excel",
+      description: t("description.4"),
+      href: "https://github.com/MatheusMangueira/CLI-Excel"
+    }
+  ]
+
+
   return (
     <LazyMotion features={domAnimation}>
       <m.div
@@ -17,7 +47,7 @@ const Page = () => {
         <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
           <div className="max-w-[800px] w-full">
 
-            <Title title="Projetos" goBack={true} />
+            <Title title={t("title")} goBack={true} />
 
             {mockProjects.map((project) => (
               <div
@@ -29,7 +59,7 @@ const Page = () => {
                     <p className="text-lg text-gray-500 ">
                       {project.title} ---{" "}
                       <span className="text-green-500">
-                        {project.tecnology}
+                        {project.technology}
                       </span>
                     </p>
                   </div>

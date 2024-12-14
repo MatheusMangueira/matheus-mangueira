@@ -1,16 +1,22 @@
 "use client";
 
-import Image from "next/image";
-import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import { Contact } from "@/components/contact";
+import { Link } from '@/i18n/routing';
+import { LazyMotion, domAnimation, m } from "framer-motion";
+import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
-const routes = [
-  { name: "Sobre", href: "/about" },
-  { name: "Projetos", href: "/projects" },
-  { name: "Currículo", href: "/pdf/matheusMangueira.pdf" },
-];
 
 export default function Home() {
+  const t = useTranslations('HomePage');
+
+  const routes = [
+    { name: t("on"), href: "/about" },
+    { name: t("projects"), href: "/projects" },
+    { name: t("cv"), href: "/pdf/matheusMangueira.pdf" },
+  ];
+
+
   return (
     <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
       <div className="max-w-[800px] w-full">
@@ -33,17 +39,14 @@ export default function Home() {
               <div className="w-full p-4 flex flex-col justify-center">
                 <div className="border-b-2 border-gray-200 pb-4">
                   <h1 className="font-medium md:text-xl text-lg">
-                    Eu sou o Matheus Mangueira
+                    {t('title')}
                   </h1>
-                  <p className="font-light text-md">Engenheiro de software</p>
+                  <p className="font-light text-md">{t('subtitle')}</p>
                 </div>
 
                 <div>
                   <p className="font-light text-md mt-4">
-                    Contribuo para a comunidade
-                    dev compartilhando conhecimento, enquanto colaboro em
-                    projetos tecnológicos, alimentando minha paixão pela
-                    inovação.
+                    {t('about')}
                   </p>
                 </div>
 
@@ -51,7 +54,7 @@ export default function Home() {
                   <ul className="flex mt-4">
                     {routes.map((route) => (
                       <li key={route.name} className="mr-4">
-                        <a
+                        <Link
                           className="underline hover:text-gray-400 ease-in duration-300 "
                           download={
                             route.href === "/pdf/matheusMangueira.pdf"
@@ -61,7 +64,7 @@ export default function Home() {
                           href={route.href}
                         >
                           {route.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

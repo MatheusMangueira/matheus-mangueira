@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 type TitleProps = {
@@ -6,6 +7,8 @@ type TitleProps = {
 };
 
 export const Title = ({ title, goBack }: TitleProps) => {
+  const t = useTranslations('guide');
+
   return (
     <div className="w-full md:flex md:items-center justify-between p-2 border-b-2 border-gray-200 pb-4">
       <h1 className="text-xl text-gray-[#565656] underline ">
@@ -14,7 +17,7 @@ export const Title = ({ title, goBack }: TitleProps) => {
       {goBack && (
         <Link href={"/"}>
           <p className="text-gray-400 underline text-lg ">
-            Voltar
+            {t("1")}
           </p>
         </Link>
       )}

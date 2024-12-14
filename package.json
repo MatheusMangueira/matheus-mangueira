@@ -17,6 +17,7 @@
     "framer-motion": "^11.0.27",
     "lucide-react": "^0.367.0",
     "next": "14.1.4",
+    "next-intl": "^3.26.1",
     "nodemailer": "^6.9.15",
     "react": "^18",
     "react-dom": "^18",

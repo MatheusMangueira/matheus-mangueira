@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Message } from "../type";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface MessagesProps {
   messages: Message[];
@@ -9,6 +10,8 @@ interface MessagesProps {
 export const Messages = ({ messages }: MessagesProps) => {
   const [expandedMessages, setExpandedMessages] = useState<Record<number, boolean>>({});
   const limit = 100;
+
+  const t = useTranslations('About');
 
 
   const toggleExpansion = (index: number) => {
@@ -79,7 +82,7 @@ export const Messages = ({ messages }: MessagesProps) => {
               onClick={() => toggleExpansion(index)}
               className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-1"
             >
-              {isExpanded ? "Ver menos" : "Ver mais"}
+              {isExpanded ? t("see.1") : t("see.2")}
             </button>
           )}
         </div>

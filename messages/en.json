@@ -1,0 +1,76 @@
+{
+  "HomePage": {
+    "title": "I am Matheus Mangueira",
+    "subtitle": "Software Engineer",
+    "about": "I contribute to the dev community by sharing knowledge and collaborating on technological projects, fueling my passion for innovation.",
+    "contact": "Contact",
+    "on": "About",
+    "cv": "Resume",
+    "projects": "Projects"
+  },
+
+  "About": {
+    "title": "About",
+
+    "description": {
+      "1": "I am Matheus Mangueira, a software developer passionate about technology. My curiosity and desire to learn led me to explore various stacks, without having a preference. What motivates me is the opportunity to solve complex challenges and find creative solutions to real-world problems. I have a special affinity for algorithms and data structures, where I find true satisfaction in facing technical challenges.",
+      "2": "In addition to developing software, I am also a content creator. I maintain a YouTube channel where I share the knowledge acquired throughout my professional journey. It is a way to give back to the community and help other developers grow in their careers.",
+      "3": "I am currently studying Computer Science and I am about to graduate. I am eager to apply all the knowledge acquired and continue my professional journey in the technology field."
+    },
+    "career": {
+      "title": "Career",
+      "1": "With two years of experience as a software developer, I have had the opportunity to contribute significantly to the development of robust and innovative applications.",
+      "2": "During this period, I worked on the development team at TeamSoft, where I played a key role in developing a highly robust inventory control application. Working alongside qualified professionals was enriching, providing me with valuable learning experiences that contributed to my professional growth.",
+      "3": "Additionally, I had the opportunity to be part of the team at the cybersecurity company Hacking Force, from its early stages. During this initial phase, I was instrumental in the development of several applications that contributed to the company's success.",
+      "4": "Currently, I work as a software developer at InHire, one of the most promising companies in the talent selection and recruitment sector. I use technologies such as AWS, DynamoDB, React, Node.js, and TypeScript to develop innovative and scalable solutions."
+    },
+    "recommendations": {
+      "title": "recommendations",
+      "description": "Hello, dear, how are you? It would be great to have a recommendation from you to enrich my journey. Thank you very much! You are amazing!"
+    },
+    "message": "Message",
+    "relationships": "Relationship",
+    "received": "Received",
+
+    "relationshipMessage": {
+      "1": "Matheus' supervisor",
+      "2": "Reported directly to Matheus",
+      "3": "Was a client of Matheus",
+      "4": "Was Matheus' mentor",
+      "5": "Was a coworker of Matheus",
+      "6": "Other"
+    },
+    "send": {
+      "1": "Send",
+      "2": "Sending..."
+    },
+
+    "errorMessage": {
+      "1": "User needs to be logged in to post a message.",
+      "2": "You have already made a post. Only one message per account is allowed.",
+      "3": "Error sending message. Please try again.",
+      "4": "Message is mandatory",
+      "5": "Position is required"
+    },
+
+    "successMessage": "Your message has been sent for approval! We appreciate your feedback and look forward to hearing from you soon.",
+
+    "see": {
+      "1": "See less",
+      "2": "See more"
+    }
+  },
+
+  "guide": { "1": "Back" },
+
+  "projects": {
+    "title": "Projects",
+
+    "description": {
+      "1": "This project consists of a value transfer system developed with a microservices architecture, composed of three interconnected microservices. Remember that the communication between our microservices is carried out via RabbitMQ.",
+      "2": "This e-commerce project was developed as part of a practical study on modern web application development. The initiative arises from the need to enhance software development skills, especially in the context of e-commerce.",
+      "3": "This is an application for monitoring and recording COVID-19-related patient symptoms.",
+      "4": "This is a project developed with the goal of optimizing a daily task through programming, providing a practical and functional solution. The idea arose from the need to compare two Excel files, each containing a list of users with names, emails, etc. The challenge was to check for the presence of a user in both lists to streamline the workflow. In doing so, I put my studies on algorithms and data structures into practice, using binary search to optimize the application."
+    }
+  }
+}

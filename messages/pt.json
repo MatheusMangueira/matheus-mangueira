@@ -1,0 +1,77 @@
+{
+  "HomePage": {
+    "title": "Eu sou o Matheus Mangueira",
+    "subtitle": "Engenheiro de software",
+    "about": "Contribuo para a comunidade dev compartilhando conhecimento, enquanto colaboro em projetos tecnológicos, alimentando minha paixão pela inovação.",
+    "contact": "Contato",
+    "on": "Sobre",
+    "cv": "Curriculo",
+    "projects": "Projetos"
+  },
+
+  "About": {
+    "title": "Sobre",
+
+    "description": {
+      "1": "Sou o Matheus Mangueira, um desenvolvedor de software apaixonado por tecnologia. Minha curiosidade e vontade de aprender me levaram a explorar diversas stacks, sem ter uma preferida. O que me motiva é a oportunidade de resolver desafios complexos e encontrar soluções criativas para problemas do mundo real. Tenho uma afinidade especial com algoritmos e estruturas de dados, onde encontro verdadeira satisfação em enfrentar desafios técnicos.",
+      "2": "Além de desenvolver software, sou também criador de conteúdo. Mantenho um canal no YouTube onde compartilho o conhecimento adquirido ao longo da minha jornada profissional. É uma forma de retribuir à comunidade e ajudar outros desenvolvedores a crescerem em suas carreiras.",
+      "3": "Atualmente estou cursando Ciência da Computação e estou prestes a me formar. Estou ansioso para aplicar todo o conhecimento adquirido e continuar minha jornada profissional na área de tecnologia."
+    },
+    "career": {
+      "title": "Carreira",
+      "1": "Com dois anos de experiência como desenvolvedor de software, tive a oportunidade de contribuir significativamente para o desenvolvimento de aplicações robustas e inovadoras.",
+      "2": "Durante esse período, atuei na equipe de desenvolvimento da TeamSoft, onde desempenhei um papel fundamental no desenvolvimento de uma aplicação de controle de estoque altamente robusta. Trabalhar ao lado de profissionais qualificados foi enriquecedor, proporcionando-me um valioso aprendizado que contribuiu para o meu crescimento profissional.",
+      "3": "Além disso, tive a oportunidade de fazer parte da equipe da empresa de segurança cibernética Hacking Force, desde seus estágios iniciais. Durante essa fase inicial, fui fundamental no desenvolvimento de várias aplicações que contribuíram para o sucesso da empresa.",
+      "4": "Atualmente, trabalho como desenvolvedor de software na InHire, uma das empresas mais promissoras no setor de seleção e recrutamento de talentos. Utilizo tecnologias como AWS, DynamoDB, React, Node.js e TypeScript para desenvolver soluções inovadoras e escaláveis."
+    },
+
+    "recommendations": {
+      "title": "Recomendações",
+      "description": "Olá, meu querido(a), como vai? Seria excelente contar com uma recomendação sua para enriquecer minha jornada. Agradeço profundamente! Você é incrível!"
+    },
+    "message": "Mensagem",
+    "relationships": "Relacionamento",
+    "received": "Recebias",
+
+    "relationshipMessage": {
+      "1": "Supervisor(a) de Matheus",
+      "2": "Respondia diretamente a Matheus",
+      "3": "Era cliente de Matheus",
+      "4": "Era orientador(a) de Matheus",
+      "5": "Era colega de trabalho de Matheus",
+      "6": "Outros"
+    },
+
+    "send": {
+      "1": "Enviar",
+      "2": "Enviando..."
+    },
+
+    "errorMessage": {
+      "1": "Usuário precisa estar logado para postar uma mensagem.",
+      "2": "Você já fez uma publicação. Apenas uma mensagem por conta é permitida.",
+      "3": "Erro ao enviar a mensagem. Tente novamente.",
+      "4": "Mensagem é obrigatório",
+      "5": "Cargo é obrigatório"
+    },
+
+    "successMessage": "Sua mensagem foi enviada para aprovação! Agradecemos seu feedback e aguarde ansiosamente uma resposta em breve.",
+
+    "see": {
+      "1": "Ver menos",
+      "2": "Ver mais"
+    }
+  },
+
+  "guide": { "1": "Voltar" },
+
+  "projects": {
+    "title": "Projetos",
+    "description": {
+      "1": "Este projeto consiste em um sistema de transferência de valores, desenvolvido com a arquitetura de microsserviços, composto por três microsserviços interconectados. Lembrando que a comunicação entre nossos microsserviços é efetuada via RabbitMQ.",
+      "2": "Este projeto de e-commerce foi desenvolvido como parte de um estudo prático sobre o desenvolvimento de aplicativos web modernos. A iniciativa surge da necessidade de aprimorar habilidades em desenvolvimento de software, especialmente no contexto de comércio eletrônico.",
+      "3": "Este é um aplicativo para monitoramento e registro de sintomas de pacientes relacionados ao COVID-19.",
+      "4": "Este é um projeto desenvolvido com o objetivo de otimizar uma tarefa diária por meio da programação, proporcionando uma solução prática e funcional. A ideia surgiu da necessidade de comparar dois arquivos do Excel, cada um contendo uma lista de usuários com nomes, e-mails, etc. O desafio era verificar a presença de um usuário em ambas as listas para facilitar o processo de trabalho. E com isso coloquei meus estudos de algoritmo e estrutura de dados em prática, utilizando a busca binária para otimizar a aplicação."
+    }
+  }
+}

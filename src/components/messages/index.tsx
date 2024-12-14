@@ -7,6 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Messages } from "./components/Messages";
 import { Message } from "./type";
 import { sendEmail } from "@/util/email";
+import { useTranslations } from "next-intl";
 
 export const Recommendations = () => {
   const {
@@ -37,6 +38,8 @@ export const Recommendations = () => {
   const [visibleMessagesCount, setVisibleMessagesCount] = useState<number>(5);
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
+  const t = useTranslations('About');
+
 
   const handleSubmitMessage = async (data: Message) => {
     const { message, relationship } = data;
@@ -47,14 +50,14 @@ export const Recommendations = () => {
     const user = await loginWithGoogle();
     if (!user) {
       console.log("Usuário precisa estar logado para postar uma mensagem.");
-      setError('root', { message: "Usuário precisa estar logado para postar uma mensagem." });
+      setError('root', { message: t("errorMessage.1") });
       setIsLoading(false);
       return;
     }
 
     if (await userHasPosted(user.uid)) {
       console.log("Você já fez uma publicação. Apenas uma mensagem por conta é permitida.");
-      setError('root', { message: "Você já fez uma publicação. Apenas uma mensagem por conta é permitida." });
+      setError('root', { message: t("errorMessage.2") });
       setIsLoading(false);
       return;
     }
@@ -94,7 +97,7 @@ export const Recommendations = () => {
 
     } catch (error) {
       console.error("Erro ao enviar a mensagem:", error);
-      setError('root', { message: "Erro ao enviar a mensagem. Tente novamente." });
+      setError('root', { message: t("errorMessage.3") });
     } finally {
       setIsLoading(false);
     }
@@ -123,9 +126,7 @@ export const Recommendations = () => {
   return (
     <div>
       <h2 className="text-lg py-5">
-        Olá, meu querido(a), como vai essa {formattedDate}? Seria excelente
-        contar com uma recomendação sua para enriquecer minha jornada. Agradeço
-        profundamente! Você é incrível!
+        {t("recommendations.description",)}
       </h2>
 
       <form
@@ -135,7 +136,8 @@ export const Recommendations = () => {
 
         <div className="flex flex-col pb-5">
           <label className="text-gray-[#565656] text-base underline pb-2">
-            Mensagem
+            {t("message",)}
+
           </label>
           <Controller
             name="message"
@@ -150,11 +152,11 @@ export const Recommendations = () => {
             )}
           />
 
-          {errors.message && <span>Mensagem é obrigatório</span>}
+          {errors.message && <span>{t("errorMessage.4")}</span>}
         </div>
         <div className="flex flex-col pb-5">
           <label className="text-gray-[#565656] text-base underline pb-2">
-            Relacionamento
+            {t("relationships",)}
           </label>
           <Controller
             name="relationship"
@@ -166,27 +168,32 @@ export const Recommendations = () => {
                 value={value}
                 required
               >
-                <option value="Supervisor(a) de Matheus">
-                  Supervisor(a) de Matheus
+                <option value={t("relationshipMessage.1",)}
+                >
+                  {t("relationshipMessage.1",)}
                 </option>
-                <option value="Respondia diretamente a Matheus">
-                  Respondia diretamente a Matheus
+                <option value={t("relationshipMessage.2",)}
+                >
+                  {t("relationshipMessage.2",)}
                 </option>
-                <option value="Era cliente de Matheus">
-                  Era cliente de Matheus
+                <option value={t("relationshipMessage.3",)}
+                >
+                  {t("relationshipMessage.3",)}
                 </option>
-                <option value="Era orientador(a) de Matheus">
-                  Era orientador(a) de Matheus
+                <option value={t("relationshipMessage.4",)}
+                >
+                  {t("relationshipMessage.4",)}
                 </option>
-                <option value="Era colega de trabalho de Matheus">
-                  Era colega de trabalho de Matheus
+                <option value={t("relationshipMessage.5",)}>
+                  {t("relationshipMessage.5",)}
                 </option>
-                <option value="Outros">Outros</option>
+                <option value="Outros">{t("relationshipMessage.6",)}
+                </option>
               </select>
             )}
           />
 
-          {errors.relationship && <span>Cargo é obrigatório</span>}
+          {errors.relationship && <span>{t("errorMessage.5")}</span>}
         </div>
 
         <button
@@ -194,7 +201,7 @@ export const Recommendations = () => {
           className="bg-blue-500 hover:bg-blue-600 transition-all
           duration-300 ease-in text-white p-2 mt-2"
         >
-          {isLoading ? "Enviando..." : "Enviar"}
+          {isLoading ? t("send.2",) : t("send.1",)}
         </button>
       </form>
 
@@ -207,14 +214,14 @@ export const Recommendations = () => {
       {successMessage && (
         <div className="pt-2">
           <h4 className="text-green-500">
-            Sua mensagem foi enviada para aprovação! Agradecemos seu feedback e aguarde ansiosamente uma resposta em breve.
+            {t("successMessage",)}
           </h4>
         </div>
       )}
 
 
       <div className="border-t-2 border-gray-200 my-10">
-        <h2 className="text-base text-[#2e9e26] underline py-4">Recebidas</h2>
+        <h2 className="text-base text-[#2e9e26] underline py-4"> {t("received",)}</h2>
 
         <Messages messages={approvedMessages.slice(0, visibleMessagesCount)} />
 
@@ -224,7 +231,7 @@ export const Recommendations = () => {
             onClick={showMoreMessages}
             className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-4"
           >
-            Ver Mais
+            {t("see.1")}
           </button>
         )}
         {visibleMessagesCount > 5 && (
@@ -232,7 +239,7 @@ export const Recommendations = () => {
             onClick={showLessMessages}
             className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold"
           >
-            Ver Menos
+            {t("see.2")}
           </button>
         )}
       </div>
