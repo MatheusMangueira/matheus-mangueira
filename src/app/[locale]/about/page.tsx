@@ -17,10 +17,16 @@ const Page = () => {
 
   const company = [
     {
+      name: "ActiveView",
+      img: "/images/activeviewnetwork_logo.jpeg",
+      office: "Software Engineer",
+      year: "2026",
+    },
+    {
       name: "InHire - Software de Recrutamento e Seleção",
       img: "/images/inhire.jpg",
       office: "Software Engineer",
-      year: "2024",
+      year: "2024 - 2026",
     },
     {
       name: "Teamsoft Sistemas e Tecnologia",
@@ -53,11 +59,7 @@ const Page = () => {
                 {t("description.1")}
                 <br />
                 <br />
-                {t("description.2")}
-
-                <br />
-                <br />
-                {t("description.3")}
+                {t("description.2")}      
 
               </p>
             </div>
@@ -77,6 +79,11 @@ const Page = () => {
                 <br />
                 <br />
                 {t("career.4")}
+                <br />
+                <br />
+                {t("career.5")}
+                <br />
+                <br />
               </p>
 
               {company.map((company) => (

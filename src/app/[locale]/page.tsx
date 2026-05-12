@@ -15,7 +15,7 @@ export default function Home() {
 
   const routes = [
     { name: t("on"), href: "/about" },
-    { name: t("projects"), href: "/projects" },
+    //{ name: t("projects"), href: "/projects" },
     { name: t("cv"), href: `pdf/matheusMangueira.pdf` },
   ];
 
@@ -36,7 +36,7 @@ export default function Home() {
                   alt="Matheus Mangueira"
                   width={300}
                   height={300}
-                  className="object-top object-cover w-72 h-72 rounded-full filter grayscale  ease-in duration-300 hover:filter-none"
+                  className=" object-cover w-72 h-72 rounded-full filter grayscale  ease-in duration-300 hover:filter-none"
                 />
               </div>
               <div className="w-full p-4 flex flex-col justify-center">

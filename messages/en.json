@@ -13,16 +13,16 @@
     "title": "About",
 
     "description": {
-      "1": "I am Matheus Mangueira, a software developer passionate about technology. My curiosity and desire to learn led me to explore various stacks, without having a preference. What motivates me is the opportunity to solve complex challenges and find creative solutions to real-world problems. I have a special affinity for algorithms and data structures, where I find true satisfaction in facing technical challenges.",
-      "2": "In addition to developing software, I am also a content creator. I maintain a YouTube channel where I share the knowledge acquired throughout my professional journey. It is a way to give back to the community and help other developers grow in their careers.",
-      "3": "I am currently studying Computer Science and I am about to graduate. I am eager to apply all the knowledge acquired and continue my professional journey in the technology field."
+      "1": "I am Matheus Mangueira, a software developer passionate about technology. My curiosity and desire to learn led me to explore various stacks, without having a preference. What motivates me is the opportunity to solve complex challenges and find creative solutions to real-world problems.",
+      "2": "I am currently studying Computer Science and I am about to graduate. I am eager to apply all the knowledge acquired and continue my professional journey in the technology field."
     },
     "career": {
       "title": "Career",
-      "1": "With two years of experience as a software developer, I have had the opportunity to contribute significantly to the development of robust and innovative applications.",
+      "1": "Throughout these years of experience as a software developer, I have had the opportunity to contribute significantly to the development of robust and innovative applications.",
       "2": "During this period, I worked on the development team at TeamSoft, where I played a key role in developing a highly robust inventory control application. Working alongside qualified professionals was enriching, providing me with valuable learning experiences that contributed to my professional growth.",
       "3": "Additionally, I had the opportunity to be part of the team at the cybersecurity company Hacking Force, from its early stages. During this initial phase, I was instrumental in the development of several applications that contributed to the company's success.",
-      "4": "Currently, I work as a software developer at InHire, one of the most promising companies in the talent selection and recruitment sector. I use technologies such as AWS, DynamoDB, React, Node.js, and TypeScript to develop innovative and scalable solutions."
+      "4": "I also worked as a software developer at InHire, one of the most promising companies in talent selection and recruitment, using technologies such as AWS, DynamoDB, React, Node.js, and TypeScript to develop innovative, scalable solutions.",
+      "5": "At ActiveView, I lead the maintenance team as a Software Engineer: I work closely with customers to understand real pain points, prioritize root causes, and drive improvements through delivery. The goal is fewer recurring incidents and less reactive work, stabilizing the product so the team can evolve the system with less toil."
     },
     "recommendations": {
       "title": "recommendations",

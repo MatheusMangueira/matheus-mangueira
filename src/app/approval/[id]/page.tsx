@@ -25,12 +25,13 @@ const ApprovalComments = () => {
 
       if (!value) return;
 
-      const response = await axios.put(`https://matheus-mangueira-five.vercel.app/api/comments?commentId=${id}`, {}, {
+      await axios.put(`https://matheus-mangueira-five.vercel.app/api/comments?commentId=${id}`, {}, {
         headers: {
           Authorization: `Bearer ${value}`,
           'Content-Type': 'application/json',
         }
       });
+      
     } catch (error) {
       console.log(error);
     }
