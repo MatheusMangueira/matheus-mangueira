@@ -3,11 +3,20 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import './globals.css';
-import { Inter } from "next/font/google";
+import { DM_Sans, Lora } from "next/font/google";
 import { SelectLanguage } from '@/components/selectLanguage';
 
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
-const inter = Inter({ subsets: ["latin"] });
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
 
 
 export default async function LocaleLayout({
@@ -27,14 +36,13 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
+    <html lang={locale} className={`${dmSans.variable} ${lora.variable}`}>
+      <body className={`${dmSans.className} min-h-screen`}>
         <NextIntlClientProvider messages={messages}>
-          <div>
-            <div className='flex justify-end px-5 pt-2'>
+          <div className="min-h-screen">
+            <header className="mx-auto flex max-w-3xl justify-end px-6 pt-8 pb-2 sm:px-8">
               <SelectLanguage />
-
-            </div>
+            </header>
             {children}
           </div>
         </NextIntlClientProvider>

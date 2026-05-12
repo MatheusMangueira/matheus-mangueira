@@ -95,7 +95,7 @@ function Photo({
         whileHover="flipped"
       >
         <m.div
-          className="relative size-full rounded-2xl shadow-md will-change-transform"
+          className="relative size-full rounded-2xl shadow-sm ring-1 ring-border will-change-transform"
           style={{ transformStyle: "preserve-3d" }}
           transition={{ type: "spring", duration: 0.4 }}
           variants={{
@@ -112,7 +112,7 @@ function Photo({
               alt={alt}
               width={width}
               height={height}
-              className="pointer-events-none absolute inset-0 size-full rounded-2xl bg-neutral-400 object-cover dark:bg-neutral-600"
+              className="pointer-events-none absolute inset-0 size-full rounded-2xl bg-muted object-cover dark:bg-muted"
               priority
             />
             {children}
@@ -120,7 +120,7 @@ function Photo({
           <div
             className={c(
               shared,
-              "flex items-center overflow-hidden rounded-2xl bg-[#FFFAF2]"
+              "flex items-center overflow-hidden rounded-2xl bg-secondary"
             )}
             style={{
               backfaceVisibility: "hidden",
@@ -130,9 +130,9 @@ function Photo({
             <Halo strength={50} className="flex items-center">
               <span className="absolute size-[500px] rotate-[-20deg] bg-[url(public/images/capaeu.png')] bg-[length:280px] bg-repeat" />
               <div className="z-[1] px-6">
-                <div className="flex flex-col gap-1 font-mono uppercase">
-                  <p className={"text-sm text-yellow-900"}>{alt}</p>
-                  {meta && <p className="text-sm text-yellow-900">{meta}</p>}
+                <div className="flex flex-col gap-1 font-mono text-[0.65rem] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                  <p>{alt}</p>
+                  {meta && <p className="text-foreground/80">{meta}</p>}
                 </div>
               </div>
             </Halo>

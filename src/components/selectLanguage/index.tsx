@@ -19,18 +19,25 @@ export const SelectLanguage = () => {
   }
 
   return (
-    <label className='border-none'>
-      <p className='sr-only'>change language</p>
+    <label className="group relative inline-flex items-center gap-2 rounded-md border border-border bg-background/80 px-2.5 py-1.5 text-xs text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-foreground/15 hover:text-foreground">
+      <span className="sr-only">Language</span>
       <select
         defaultValue={localActive}
-        className='bg-transparent py-2'
+        className="cursor-pointer appearance-none bg-transparent pr-6 text-xs font-medium text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50"
         onChange={onSelectChange}
         disabled={isPending}
+        aria-label="Change language"
       >
         <option value='en'>English</option>
-        <option value="es">Espanhol</option>
+        <option value="es">Español</option>
         <option value='pt'>Português</option>
       </select>
+      <span
+        className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[0.65rem] text-muted-foreground transition-colors group-hover:text-foreground"
+        aria-hidden
+      >
+        ▾
+      </span>
     </label>
 
   )

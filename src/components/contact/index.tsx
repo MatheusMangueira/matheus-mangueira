@@ -11,26 +11,31 @@ const social = [
   },
 ];
 
+const linkClass =
+  "text-sm text-muted-foreground underline decoration-border/50 underline-offset-[5px] transition-colors hover:text-foreground hover:decoration-foreground/40";
+
 export const Contact = () => {
   const t = useTranslations('HomePage');
 
   return (
-    <div className="pt-6">
-      <p className="text-lg pb-2">{t("contact")}</p>
-      <ul className="flex">
-        {social.map((social) => (
-          <li key={social.name} className="mr-4">
+    <section className="space-y-3" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+        {t("contact")}
+      </h2>
+      <ul className="flex flex-wrap gap-x-6 gap-y-2">
+        {social.map((item) => (
+          <li key={item.name}>
             <Link
               target="_blank"
-              className={`text-sm underline hover:text-gray-400 ease-in duration-300 ${social.name === "LinkedIn" ? "text-blue-500" : ""
-                }`}
-              href={social.href}
+              rel="noreferrer"
+              className={linkClass}
+              href={item.href}
             >
-              {social.name}
+              {item.name}
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };

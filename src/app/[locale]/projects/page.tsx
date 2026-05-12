@@ -41,38 +41,41 @@ const Page = () => {
     <LazyMotion features={domAnimation}>
       <m.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 4 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
-          <div className="max-w-[800px] w-full">
+        <main className="mx-auto min-h-screen max-w-3xl px-6 pb-24 pt-2 sm:px-8">
+          <div className="w-full">
 
             <Title title={t("title")} goBack={true} />
 
             {mockProjects.map((project) => (
-              <div
+              <article
                 key={project.title}
-                className="w-full pt-12 border-b-2 border-gray-200 pb-4"
+                className="border-b border-border py-12 last:border-b-0"
               >
-                <div>
-                  <div className="flex w-ful justify-between">
-                    <p className="text-lg text-gray-500 ">
-                      {project.title} ---{" "}
-                      <span className="text-green-500">
-                        {project.technology}
-                      </span>
-                    </p>
-                  </div>
+                <header className="space-y-2">
+                  <h2 className="font-serif text-xl font-medium tracking-tight text-foreground sm:text-2xl">
+                    {project.title}
+                  </h2>
+                  <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                    {project.technology}
+                  </p>
+                </header>
 
-                  <p className="pt-2">{project.description}</p>
+                <p className="mt-5 text-[0.9375rem] leading-relaxed text-foreground/90">
+                  {project.description}
+                </p>
 
-                  <Link target="_blank" href={project.href}>
-                    <p className="underline pt-2 text-sm text-gray-400 hover:text-gray-500 ease-in duration-300 ">
-                      GitHub
-                    </p>
-                  </Link>
-                </div>
-              </div>
+                <Link
+                  target="_blank"
+                  rel="noreferrer"
+                  href={project.href}
+                  className="mt-5 inline-block text-sm text-muted-foreground underline decoration-border/60 underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground/40"
+                >
+                  GitHub
+                </Link>
+              </article>
             ))}
 
           </div>

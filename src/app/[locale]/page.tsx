@@ -5,80 +5,78 @@ import { Link } from '@/i18n/routing';
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
-import { useParams } from "next/navigation";
+
+const linkClass =
+  "text-sm text-muted-foreground underline decoration-border/50 underline-offset-[5px] transition-colors hover:text-foreground hover:decoration-foreground/40";
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const params = useParams();
-
-  console.log(params.locale);
 
   const routes = [
     { name: t("on"), href: "/about" },
-    //{ name: t("projects"), href: "/projects" },
     { name: t("cv"), href: `pdf/matheusMangueira.pdf` },
   ];
 
-
   return (
-    <main className="min-h-screen flex flex-col items-center md:p-24 p-8 ">
-      <div className="max-w-[800px] w-full">
-        <LazyMotion features={domAnimation}>
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            <div className="w-full md:flex md:items-center p-2 ">
-              <div className="h-full w-full flex">
-                <Image
-                  src="/images/eu.jpg"
-                  alt="Matheus Mangueira"
-                  width={300}
-                  height={300}
-                  className=" object-cover w-72 h-72 rounded-full filter grayscale  ease-in duration-300 hover:filter-none"
-                />
-              </div>
-              <div className="w-full p-4 flex flex-col justify-center">
-                <div className="border-b-2 border-gray-200 pb-4">
-                  <h1 className="font-medium md:text-xl text-lg">
-                    {t('title')}
-                  </h1>
-                  <p className="font-light text-md">{t('subtitle')}</p>
-                </div>
-
-                <div>
-                  <p className="font-light text-md mt-4">
-                    {t('about')}
-                  </p>
-                </div>
-
-                <div className="md:pt-12 pt-6 pb-4 border-b-2 border-gray-200">
-                  <ul className="flex mt-4">
-                    {routes.map((route) => (
-                      <li key={route.name} className="mr-4">
-                        <Link
-                          className="underline hover:text-gray-400 ease-in duration-300 "
-                          download={
-                            route.href === `${params.locale}/pdf/matheusMangueira.pdf`
-                              ? "currículo-matheus-mangueira.pdf"
-                              : undefined
-                          }
-                          href={route.href}
-                        >
-                          {route.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Contact />
-              </div>
+    <main className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-3xl flex-col px-6 pb-20 pt-4 sm:px-8">
+      <LazyMotion features={domAnimation}>
+        <m.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full"
+        >
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-14">
+            <div className="shrink-0 md:w-[280px]">
+              <Image
+                src="/images/eu.jpg"
+                alt="Matheus Mangueira"
+                width={300}
+                height={300}
+                priority
+                className="aspect-square w-full max-w-[280px] rounded-2xl object-cover shadow-sm ring-1 ring-border grayscale transition-[filter,box-shadow] duration-500 ease-out hover:grayscale-0 hover:shadow-md md:max-w-none"
+              />
             </div>
-          </m.div>
-        </LazyMotion>
-      </div>
+
+            <div className="flex min-w-0 flex-1 flex-col gap-8">
+              <header className="space-y-3 border-b border-border pb-8">
+                <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-[2rem]">
+                  {t('title')}
+                </h1>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  {t('subtitle')}
+                </p>
+              </header>
+
+              <p className="text-[0.9375rem] leading-[1.7] text-foreground/90">
+                {t('about')}
+              </p>
+
+              <nav
+                className="flex flex-wrap gap-x-6 gap-y-2 border-b border-border pb-8"
+                aria-label="Links"
+              >
+                {routes.map((route) => (
+                  <Link
+                    key={route.name}
+                    className={linkClass}
+                    download={
+                      route.href.includes("matheusMangueira.pdf")
+                        ? "currículo-matheus-mangueira.pdf"
+                        : undefined
+                    }
+                    href={route.href}
+                  >
+                    {route.name}
+                  </Link>
+                ))}
+              </nav>
+
+              <Contact />
+            </div>
+          </div>
+        </m.div>
+      </LazyMotion>
     </main>
   );
 }

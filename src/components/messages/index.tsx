@@ -35,7 +35,7 @@ export const Recommendations = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [visibleMessagesCount, setVisibleMessagesCount] = useState<number>(5);
+  const [visibleMessagesCount, setVisibleMessagesCount] = useState<number>(10);
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
   const t = useTranslations('About');
@@ -124,27 +124,26 @@ export const Recommendations = () => {
   const approvedMessages = messages.filter((msg) => msg.approval);
 
   return (
-    <div>
-      <h2 className="text-lg py-5">
+    <div className="space-y-10">
+      <p className="max-w-2xl text-[0.9375rem] leading-relaxed text-muted-foreground">
         {t("recommendations.description",)}
-      </h2>
+      </p>
 
       <form
-        className="flex flex-col"
+        className="flex max-w-xl flex-col gap-6"
         onSubmit={handleSubmit(handleSubmitMessage)}
       >
 
-        <div className="flex flex-col pb-5">
-          <label className="text-gray-[#565656] text-base underline pb-2">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
             {t("message",)}
-
           </label>
           <Controller
             name="message"
             control={control}
             render={({ field: { onChange, value } }) => (
               <textarea
-                className="border-2 border-gray-200 p-2 rounded"
+                className="min-h-[140px] resize-y rounded-md border border-border bg-background px-3 py-2.5 text-sm leading-relaxed text-foreground shadow-sm transition-shadow placeholder:text-muted-foreground focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onChange={onChange}
                 value={value}
                 required
@@ -152,10 +151,12 @@ export const Recommendations = () => {
             )}
           />
 
-          {errors.message && <span>{t("errorMessage.4")}</span>}
+          {errors.message && (
+            <span className="text-sm text-destructive">{t("errorMessage.4")}</span>
+          )}
         </div>
-        <div className="flex flex-col pb-5">
-          <label className="text-gray-[#565656] text-base underline pb-2">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
             {t("relationships",)}
           </label>
           <Controller
@@ -163,7 +164,7 @@ export const Recommendations = () => {
             control={control}
             render={({ field: { onChange, value } }) => (
               <select
-                className="border-2 border-gray-200 p-2 rounded bg-transparent"
+                className="rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground shadow-sm focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onChange={onChange}
                 value={value}
                 required
@@ -193,51 +194,55 @@ export const Recommendations = () => {
             )}
           />
 
-          {errors.relationship && <span>{t("errorMessage.5")}</span>}
+          {errors.relationship && (
+            <span className="text-sm text-destructive">{t("errorMessage.5")}</span>
+          )}
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 transition-all
-          duration-300 ease-in text-white p-2 mt-2"
+          className="inline-flex w-fit items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-50"
+          disabled={isLoading}
         >
           {isLoading ? t("send.2",) : t("send.1",)}
         </button>
       </form>
 
       {errors.root && (
-        <div className="pt-2">
-          <h4 className="text-red-500">{errors.root.message}</h4>
-        </div>
+        <p className="text-sm text-destructive" role="alert">
+          {errors.root.message}
+        </p>
       )}
 
       {successMessage && (
-        <div className="pt-2">
-          <h4 className="text-green-500">
-            {t("successMessage",)}
-          </h4>
-        </div>
+        <p className="border-l-2 border-foreground/25 pl-4 text-sm text-muted-foreground">
+          {t("successMessage",)}
+        </p>
       )}
 
 
-      <div className="border-t-2 border-gray-200 my-10">
-        <h2 className="text-base text-[#2e9e26] underline py-4"> {t("received",)}</h2>
+      <div className="border-t border-border pt-10">
+        <h3 className="mb-6 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+          {t("received",)}
+        </h3>
 
         <Messages messages={approvedMessages.slice(0, visibleMessagesCount)} />
 
 
         {visibleMessagesCount < approvedMessages.length && (
           <button
+            type="button"
             onClick={showMoreMessages}
-            className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-4"
+            className="mt-6 text-sm text-muted-foreground underline decoration-border/60 underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground/40"
           >
             {t("see.2")}
           </button>
         )}
         {visibleMessagesCount > 5 && (
           <button
+            type="button"
             onClick={showLessMessages}
-            className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold"
+            className="mt-3 block text-sm text-muted-foreground underline decoration-border/60 underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground/40"
           >
             {t("see.1")}
           </button>
