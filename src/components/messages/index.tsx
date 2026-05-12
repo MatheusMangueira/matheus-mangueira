@@ -231,7 +231,7 @@ export const Recommendations = () => {
             onClick={showMoreMessages}
             className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold mt-4"
           >
-            {t("see.1")}
+            {t("see.2")}
           </button>
         )}
         {visibleMessagesCount > 5 && (
@@ -239,7 +239,7 @@ export const Recommendations = () => {
             onClick={showLessMessages}
             className="text-gray-400 hover:text-gray-700 transition-all duration-300 ease-in-out text-sm font-semibold"
           >
-            {t("see.2")}
+            {t("see.1")}
           </button>
         )}
       </div>
